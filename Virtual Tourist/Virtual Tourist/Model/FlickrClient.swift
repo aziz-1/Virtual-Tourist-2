@@ -46,13 +46,13 @@ class FlickrClient {
         return task
     }
     
-    class func getPhotos(body: APIRequest, completion: @escaping (Photos?, Error?) -> Void) {
+    class func getPhotos(body: APIRequest, completion: @escaping (PhotosResponse?, Error?) -> Void) {
         var fullURL = Endpoints.base
         if let url =  Utility.returnStringURL(request: body) {
             fullURL = fullURL + url
             
         }
-        taskForGETRequest(url: URL(string:fullURL) ?? URL(string: "")!, responseType: Photos.self) { (response, error) in
+        taskForGETRequest(url: URL(string:fullURL) ?? URL(string: "")!, responseType: PhotosResponse.self) { (response, error) in
             if let response = response {
               
                 completion(response, nil)
